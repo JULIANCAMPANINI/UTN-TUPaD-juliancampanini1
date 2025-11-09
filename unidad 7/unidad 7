@@ -1,0 +1,120 @@
+#1
+precios_frutas = {'Banana': 1200, 'Ananá': 2500, 'Melón': 3000, 'Uva': 1450}
+
+precios_frutas['Naranja'] = 1200
+precios_frutas['Manzana'] = 1500
+precios_frutas['Pera'] = 2300
+
+print(precios_frutas)
+
+#2
+
+precios_frutas['Banana'] = 1330
+precios_frutas['Manzana'] = 1700
+precios_frutas['Melón']  = 2800
+
+print(precios_frutas)
+
+#3
+
+solo_frutas = list(precios_frutas.keys())
+print(solo_frutas)
+
+#4
+
+agenda = {}
+
+for i in range(5):
+    nombre = input("Nombre: ")
+    numero = input("Número: ")
+    agenda[nombre] = numero
+
+buscar = input("A quién querés buscar?: ")
+
+if buscar in agenda:
+    print("Número:", agenda[buscar])
+else:
+    print("No está ese contacto.")
+#5
+
+frase = input("Frase: ")
+palabras = frase.split()
+
+unicas = set(palabras)
+print("Palabras únicas:", unicas)
+
+contador = {}
+for p in palabras:
+    if p in contador:
+        contador[p] += 1
+    else:
+        contador[p] = 1
+
+print("Repeticiones:", contador)
+
+#6
+
+alumnos = {}
+
+for i in range(3):
+    nombre = input("Nombre del alumno: ")
+    n1 = float(input("Nota 1: "))
+    n2 = float(input("Nota 2: "))
+    n3 = float(input("Nota 3: "))
+    alumnos[nombre] = (n1, n2, n3)
+
+for nombre, notas in alumnos.items():
+    prom = sum(notas) / 3
+    print(nombre, "promedio:", prom)
+
+#7
+
+parcial1 = {1,2,3,4}
+parcial2 = {3,4,5,6}
+
+print("Ambos:", parcial1 & parcial2)
+print("Sólo uno:", parcial1 ^ parcial2)
+print("Al menos uno:", parcial1 | parcial2)
+
+#8
+
+stock = {"Azucar": 10, "Yerba": 5, "Aceite": 3}
+
+prod = input("Producto: ")
+
+if prod in stock:
+    sumar = int(input("Cuantas unidades agregar?: "))
+    stock[prod] += sumar
+else:
+    nuevo_stock = int(input("No existe. Cuantas unidades tiene nuevo?: "))
+    stock[prod] = nuevo_stock
+
+print(stock)
+
+#9
+
+
+agenda = {("lunes", 10): "Gimnasio",
+          ("martes", 14): "Dentista"}
+
+dia = input("Día: ")
+hora = int(input("Hora: "))
+
+clave = (dia, hora)
+
+if clave in agenda:
+    print("Actividad:", agenda[clave])
+else:
+    print("No hay nada.")
+    
+#10
+
+
+paises = {"Argentina":"Buenos Aires", "Brasil":"Brasilia", "Chile":"Santiago"}
+
+invertido = {}
+
+for pais, capital in paises.items():
+    invertido[capital] = pais
+
+print(invertido)
