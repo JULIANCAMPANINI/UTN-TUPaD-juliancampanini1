@@ -1,169 +1,170 @@
-# 1) Crea una función recursiva que calcule el factorial de un número.
-# Luego, utiliza esa función para calcular y mostrar en pantalla el factorial de todos los números enteros entre 1 y el número que indique el usuario
+# ==============================================================================
+# EJERCICIO 1: FACTORIAL (Recursividad)
+# Función para calcular el factorial usando llamadas recursivas
+def calcular_factorial(num):
+    # Caso base: El factorial de 0 es 1.
+    return 1 if num == 0 else num * calcular_factorial(num - 1)
+
+# Programa principal: Muestra el factorial de los números hasta el límite N.
+limite_n = int(input("Ingrese un número límite N: "))
+print(f"\nCalculando factoriales hasta {limite_n}:")
+for i in range(1, limite_n + 1):
+    # Llama a la función y muestra el resultado en lazo (loop)
+    print(f"El factorial de {i} es: {calcular_factorial(i)}")
+# ==============================================================================
 
 
-#funcion para calcular el factorial
-def fact(num):
-    return 1 if num == 0 else num * fact(num - 1)
-
-#programa principal:
-n = int(input("Ingrese un numero: "))
-for i in range(1, n+1):
-    print(f"el factorial de {i} es: {fact(i)}")
-
-
-
-# 2) Crea una función recursiva que calcule el valor de la serie de Fibonacci en la posición indicada.
-# Posteriormente, muestra la serie completa hasta la posición que el usuario especifique.
-
-
-def fibonacci(n):
+# ==============================================================================
+# EJERCICIO 2: SERIE DE FIBONACCI (Recursividad)
+# Función recursiva para obtener el valor de Fibonacci en la posición 'n'
+def serie_fibo(n):
+    # Caso base 1: Posición 0 es 0.
     if n == 0:
         return 0
+    # Caso base 2: Posición 1 es 1.
     elif n == 1:
         return 1
+    # Paso recursivo: La suma de las dos posiciones anteriores.
     else:
-        return fibonacci(n-1) + fibonacci(n-2)
+        return serie_fibo(n - 1) + serie_fibo(n - 2)
     
-pos = int(input("Ingrese una posición para la serie de Fibonacci: "))
+pos_final = int(input("\nIngrese la posición final para la serie de Fibonacci: "))
 
-print(f"Serie de Fibonacci hasta la posición {pos}:")
-for i in range(pos + 1):
-    print(fibonacci(i))
+print(f"Serie completa hasta la posición {pos_final}:")
+for i in range(pos_final + 1):
+    # Itera e imprime cada valor de la serie.
+    print(f"{i}: {serie_fibo(i)}")
+# ==============================================================================
 
 
-# 3) Crea una función recursiva que calcule la potencia de un número base elevado a un exponente, utilizando la fórmula 𝑛𝑚= 𝑛∗𝑛(𝑚−1). Prueba esta función en un algoritmo general.
-
-
-# Función recursiva para calcular la potencia
-def potencia(base, exponente):
-    if exponente == 0:      
+# ==============================================================================
+# EJERCICIO 3: POTENCIA (Recursividad)
+# Función recursiva para calcular la potencia (base^exponente)
+def calc_potencia(base, exponente):
+    # Caso base: Cualquier número elevado a la 0 es 1.
+    if exponente == 0:     
         return 1
-    else:         
-        return base * potencia(base, exponente - 1)
+    # Paso recursivo: Multiplica la base por la potencia de (exponente - 1).
+    else:           
+        return base * calc_potencia(base, exponente - 1)
 
-# Programa principal
-base = int(input("Ingrese la base: "))
-exponente = int(input("Ingrese el exponente: "))
+# Algoritmo principal
+valor_base = int(input("\nIngrese la base numérica: "))
+valor_exp = int(input("Ingrese el exponente: "))
 
-resultado = potencia(base, exponente)
-print(f"{base} elevado a la {exponente} es: {resultado}")
-
-
-# 4) Crear una función recursiva en Python que reciba un número entero positivo en base decimal y devuelva su representación en binario como una cadena de texto.
-# Cuando representamos un número en binario, lo expresamos usando solamente ceros (0) y unos (1), en base 2. Para convertir un número decimal a binario, se puede seguir este procedimiento:
-# 1. Dividir el número por 2.
-# 2. Guardar el resto (0 o 1).
-# 3. Repetir el proceso con el cociente hasta que llegue a 0.
-# 4. Los restos obtenidos, leídos de abajo hacia arriba, forman el número binario.
-# 🧠 Ejemplo:
-# Convertir el número 10 a binario:
-# 10 ÷ 2 = 5 resto: 0
-# 5 ÷ 2 = 2 resto: 1
-# 2 ÷ 2 = 1 resto: 0
-# 1 ÷ 2 = 0 resto: 1
-# Leyendo los restos de abajo hacia arriba: 1 0 1 0 → El resultado binario es "1010".
+res_potencia = calc_potencia(valor_base, valor_exp)
+print(f"{valor_base} elevado a la {valor_exp} da como resultado: {res_potencia}")
+# ==============================================================================
 
 
-# Función recursiva para convertir un número decimal a binario
-def decimal_a_binario(num):
-    if num == 0:
+# ==============================================================================
+# EJERCICIO 4: DECIMAL A BINARIO (Recursividad)
+# Función recursiva para la conversión de base 10 a base 2
+def decimal_a_bin(numero_dec):
+    # Casos base para 0 y 1.
+    if numero_dec == 0:
         return "0"
-    elif num == 1:
+    elif numero_dec == 1:
         return "1"
+    # Paso recursivo: Llama a la función con la división entera (cociente) y concatena el resto (residuo).
     else:
-        return decimal_a_binario(num // 2) + str(num % 2)
+        cociente = numero_dec // 2
+        residuo = numero_dec % 2
+        return decimal_a_bin(cociente) + str(residuo)
 
-# Programa principal
-n = int(input("Ingrese un número entero positivo: "))
-if n < 0:
-    print("Por favor, ingrese un número positivo.")
+# Inicia el programa
+n_dec = int(input("\nIngrese un número entero positivo para convertir a binario: "))
+if n_dec < 0:
+    print("Error: Ingrese un número positivo.")
 else:
-    binario = decimal_a_binario(n)
-    print(f"El número {n} en binario es: {binario}")
+    conversion_binaria = decimal_a_bin(n_dec)
+    print(f"El valor {n_dec} en formato binario es: {conversion_binaria}")
+# ==============================================================================
 
 
-# 5) Implementá una función recursiva llamada es_palindromo(palabra) que reciba una cadena de texto sin espacios ni tildes, y devuelva True si es un palíndromo o False si no lo es.
-# Requisitos:
-# La solución debe ser recursiva.
-# No se debe usar [::-1] ni la función reversed().
-
-
-def es_palindromo(palabra):
-    if len(palabra) <= 1:
+# ==============================================================================
+# EJERCICIO 5: PALÍNDROMO (Recursividad)
+# Función recursiva para verificar si una palabra es palíndromo
+def verificar_palindromo(palabra_check):
+    # Caso base 1: Si la longitud es 0 o 1, siempre es palíndromo (la recursión se detiene).
+    if len(palabra_check) <= 1:
         return True
-    elif palabra[0] != palabra[-1]:
+    # Caso base 2: Si los caracteres de los extremos no coinciden, no es palíndromo.
+    elif palabra_check[0] != palabra_check[-1]:
         return False
+    # Paso recursivo: Llama a la función con la subcadena que excluye el primer y último carácter.
     else:
-        return es_palindromo(palabra[1:-1])
+        return verificar_palindromo(palabra_check[1:-1])
 
-# Programa principal
-texto = input("Ingrese una palabra (sin espacios ni tildes): ").lower()
+# Ejecución
+texto_entrada = input("\nIngrese una palabra para verificar si es palíndromo: ").lower()
 
-if es_palindromo(texto):
-    print(f'"{texto}" es un palíndromo')
+if verificar_palindromo(texto_entrada):
+    print(f'"{texto_entrada}" es un palíndromo (se lee igual al derecho y al revés).')
 else:
-    print(f'"{texto}" no es un palíndromo')
+    print(f'"{texto_entrada}" no es un palíndromo.')
+# ==============================================================================
 
 
-# 6) Escribí una función recursiva en Python llamada suma_digitos(n) que reciba un número entero positivo y devuelva la suma de todos sus dígitos.
-# Restricciones:
-# No se puede convertir el número a string.
-# Usá operaciones matemáticas (%, //) y recursión.
-# Ejemplos:
-# suma_digitos(1234) → 10 (1 + 2 + 3 + 4)
-# suma_digitos(9) → 9
-# suma_digitos(305) → 8 (3 + 0 + 5)
-
-
-def suma_digitos(n):
-    if n < 10:
-        return n
-    else:
-        return (n % 10) + suma_digitos(n // 10)
-
-# Programa principal
-numero = int(input("Ingrese un número entero positivo: "))
-resultado = suma_digitos(numero)
-print(f"La suma de los dígitos de {numero} es: {resultado}")
-
-
-# 7) Un niño está construyendo una pirámide con bloques. En el nivel más bajo coloca n bloques, en el siguiente nivel uno menos (n - 1), y así sucesivamente hasta llegar al último nivel con un solo bloque.
-# Escribí una función recursiva contar_bloques(n) que reciba el número de bloques en el nivel más bajo y devuelva el total de bloques que necesita para construir toda la pirámide.
-# Ejemplos:
-# contar_bloques(1) → 1 (1)
-# contar_bloques(2) → 3 (2 + 1)
-# contar_bloques(4) → 10 (4 + 3 + 2 + 1)
-
-
-def contar_bloques(n):
-    if n == 1:
-        return 1
-    else:
-        return n + contar_bloques(n - 1)
-
-niveles = int(input("Ingrese la cantidad de bloques del nivel más bajo: "))
-total = contar_bloques(niveles)
-
-print(f"Para construir una pirámide con {niveles} niveles se necesitan {total} bloques en total.")
-
-
-# 8) Escribí una función recursiva llamada contar_digito(numero, digito) que reciba un número entero positivo (numero) y un dígito (entre 0 y 9), y devuelva cuántas veces aparece ese dígito dentro del número.
-# Ejemplos:
-# contar_digito(12233421, 2) → 3
-# contar_digito(5555, 5) → 4
-
-def contar_digito(numero, digito):
+# ==============================================================================
+# EJERCICIO 6: SUMA DE DÍGITOS (Recursividad Matemática)
+# Función recursiva para sumar los dígitos de un número entero (solo con aritmética)
+def sumar_digitos_num(numero):
+    # Caso base: Si el número es menor a 10 (un solo dígito), el resultado es el número mismo.
     if numero < 10:
-        return 1 if numero == digito else 0
+        return numero
+    # Paso recursivo: Suma el último dígito (residuo) y llama a la función con el resto del número (cociente).
     else:
-        ultimo = numero % 10
-        coincidencia = 1 if ultimo == digito else 0
-        return coincidencia + contar_digito(numero // 10, digito)
+        ultimo_digito = numero % 10
+        resto_del_numero = numero // 10
+        return ultimo_digito + sumar_digitos_num(resto_del_numero)
 
-# Programa principal
-numero = int(input("Ingrese un número entero positivo: "))
-digito = int(input("Ingrese un dígito entre 0 y 9: "))
+# Lógica principal
+valor_input = int(input("\nIngrese un valor para sumar sus dígitos: "))
+suma_total = sumar_digitos_num(valor_input)
+print(f"La suma total de los dígitos de {valor_input} es: {suma_total}")
+# ==============================================================================
 
-resultado = contar_digito(numero, digito)
-print(f"El dígito {digito} aparece {resultado} veces en {numero}.")
+
+# ==============================================================================
+# EJERCICIO 7: PIRÁMIDE DE BLOQUES (Recursividad Suma Progresiva)
+# Función recursiva para calcular el total de bloques
+def calcular_total_bloques(nivel_n):
+    # Caso base: El último nivel siempre tiene 1 bloque.
+    if nivel_n == 1:
+        return 1
+    # Paso recursivo: Suma el nivel actual y llama a la función para el nivel superior (n - 1).
+    else:
+        return nivel_n + calcular_total_bloques(nivel_n - 1)
+
+niveles_piramide = int(input("\nIngrese la cantidad de bloques en el nivel más bajo (Niveles totales): "))
+total_bloques = calcular_total_bloques(niveles_piramide)
+
+print(f"Para construir una pirámide con {niveles_piramide} niveles se necesitan {total_bloques} bloques en total.")
+# ==============================================================================
+
+
+# ==============================================================================
+# EJERCICIO 8: CONTAR DÍGITO ESPECÍFICO (Recursividad)
+# Función recursiva para contar un dígito dentro de un número
+def contar_coincidencias(numero, digito_buscado):
+    # Caso base: Cuando queda un solo dígito.
+    if numero < 10:
+        # Retorna 1 si el único dígito coincide, 0 si no.
+        return 1 if numero == digito_buscado else 0
+    # Paso recursivo:
+    else:
+        ultimo_digito = numero % 10
+        # Determina si el último dígito coincide (1 o 0).
+        coincidencia_actual = 1 if ultimo_digito == digito_buscado else 0
+        # Suma la coincidencia actual y llama a la función con el resto del número (n // 10).
+        resto_del_numero = numero // 10
+        return coincidencia_actual + contar_coincidencias(resto_del_numero, digito_buscado)
+
+# Bloque de ejecución principal
+valor_num = int(input("\nIngrese el número grande para buscar: "))
+valor_digito = int(input("Ingrese el dígito a contar (0-9): "))
+
+contador_final = contar_coincidencias(valor_num, valor_digito)
+print(f"El dígito {valor_digito} aparece un total de {contador_final} veces en el número {valor_num}.")
+# ==============================================================================
